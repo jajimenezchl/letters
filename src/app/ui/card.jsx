@@ -2,27 +2,50 @@
 
 import { useState , useEffect } from "react";
 import { randomNumber } from "@/app/utils";
+import { array_letters } from "@/app/definitions";
 
-export default function Card(props) {
 
-    console.log({props}) // console.log(children)
+export default function table(props) {
+
+    
+    const [list_letter, setlist_letter] = useState(2);   
+    get_letter_enable(list_letter)
+
+    return (
+        <>
+        < Card />
+        < Card />
+        < Card />
+        < Card />
+        < Card />
+        < Card />
+        </>
+    )
+}
+
+export function Card(props) {
+
     const [Letter, setLetter] = useState();
-
-    const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 
-    'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
-    useEffect(() => {
-        setLetter(randomNumber(0, 25));
-    }, []);
 
     const handleClick = () => {
         setLetter(randomNumber(0, 25));
     }
 
+    // useEffect(() => {
+    //     randomNumber(0, 25)
+    // })
+
     return (
-        <div className="flex justify-center items-center w-40 min-h-64 border-2" onClick={handleClick} >
-            <span className="text-7xl font-bold">{ props.name}{ letters[Letter] } </span>
+        <div className="flex justify-center items-center bg-gray-100 w-40 min-h-40 border-2 shadow-lg p-4 rounded m-4" onClick={handleClick} >
+            <p className="text-7xl font-bold drop-shadow-2xl">{ array_letters(Letter) } </p>
         </div>
+       
         
     )
+}
+
+
+
+function get_letter_enable(letter){
+console.log(letter)
 }
